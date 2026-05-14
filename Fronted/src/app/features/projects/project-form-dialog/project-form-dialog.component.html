@@ -1,0 +1,22 @@
+<h2 mat-dialog-title>{{ isEditing ? 'Editar proyecto' : 'Nuevo proyecto' }}</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="form" class="form-stack">
+    <mat-form-field appearance="outline">
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="nombre">
+      <mat-error>El nombre es obligatorio</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Descripcion</mat-label>
+      <textarea matInput rows="4" formControlName="descripcion"></textarea>
+      <mat-error>La descripcion es demasiado larga</mat-error>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button type="button" (click)="cancel()">Cancelar</button>
+  <button mat-flat-button color="primary" type="button" [disabled]="form.invalid" (click)="save()">Guardar</button>
+</mat-dialog-actions>

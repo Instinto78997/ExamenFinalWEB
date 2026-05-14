@@ -1,0 +1,38 @@
+<h2 mat-dialog-title>{{ isEditing ? 'Editar tarea' : 'Nueva tarea' }}</h2>
+
+<mat-dialog-content>
+  <form [formGroup]="form" class="form-stack">
+    <mat-form-field appearance="outline">
+      <mat-label>Titulo</mat-label>
+      <input matInput formControlName="titulo">
+      <mat-error>El titulo es obligatorio</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Descripcion</mat-label>
+      <textarea matInput rows="4" formControlName="descripcion"></textarea>
+      <mat-error>La descripcion es demasiado larga</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Estado</mat-label>
+      <mat-select formControlName="estado">
+        <mat-option *ngFor="let status of statuses" [value]="status.value">{{ status.label }}</mat-option>
+      </mat-select>
+      <mat-error>El estado es obligatorio</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Responsable</mat-label>
+      <mat-select formControlName="usuarioId">
+        <mat-option [value]="null">Sin asignar</mat-option>
+        <mat-option *ngIf="data.user" [value]="data.user.id">{{ data.user.nombre }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button type="button" (click)="cancel()">Cancelar</button>
+  <button mat-flat-button color="primary" type="button" [disabled]="form.invalid" (click)="save()">Guardar</button>
+</mat-dialog-actions>

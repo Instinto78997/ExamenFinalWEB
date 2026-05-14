@@ -1,0 +1,6 @@
+<mat-toolbar *ngIf="user$ | async as user">
+  <a mat-button routerLink="/proyectos" class="brand">TaskFlow</a>
+  <span class="spacer"></span>
+  <span class="user-name">{{ user.nombre }}</span>
+  <button mat-stroked-button type="button" (click)="logout()">Cerrar sesion</button>
+</mat-toolbar>

@@ -1,0 +1,7 @@
+Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1939:16)
+    at listenInCluster (node:net:1996:12)
+    at Server.listen (node:net:2101:7)
+    at Function.listen (C:\Users\Henry Menendez\Documents\UDV\RemotoAplicacionesWeb\Backend\node_modules\express\lib\application.js:635:24)
+    at startServer (C:\Users\Henry Menendez\Documents\UDV\RemotoAplicacionesWeb\Backend\src\index.ts:47:9)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)

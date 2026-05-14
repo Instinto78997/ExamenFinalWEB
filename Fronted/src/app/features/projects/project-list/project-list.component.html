@@ -1,0 +1,58 @@
+<section class="page">
+  <div class="page-header">
+    <div>
+      <h1>TaskFlow</h1>
+      <p>Crea proyectos, administra sus tareas y filtra el trabajo por estado.</p>
+    </div>
+    <button mat-flat-button color="primary" type="button" (click)="openCreateDialog()">Nuevo proyecto</button>
+  </div>
+
+  <div class="workflow-grid">
+    <article class="workflow-card" *ngFor="let item of workflowItems">
+      <h2>{{ item.title }}</h2>
+      <p>{{ item.text }}</p>
+    </article>
+  </div>
+
+  <mat-card>
+    <mat-card-content>
+      <div class="loading-state" *ngIf="loading">
+        <mat-spinner diameter="42"></mat-spinner>
+      </div>
+
+      <p class="form-error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+      <div class="empty-state" *ngIf="!loading && projects.length === 0">
+        <h2>No hay proyectos todavia</h2>
+        <p>Crea tu primer proyecto; al guardarlo entraras a la pantalla donde puedes agregar tareas y filtrarlas.</p>
+        <button mat-flat-button color="primary" type="button" (click)="openCreateDialog()">Crear primer proyecto</button>
+      </div>
+
+      <div class="table-wrap" *ngIf="!loading && projects.length > 0">
+        <table mat-table [dataSource]="projects">
+          <ng-container matColumnDef="nombre">
+            <th mat-header-cell *matHeaderCellDef>Nombre</th>
+            <td mat-cell *matCellDef="let project">{{ project.nombre }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="descripcion">
+            <th mat-header-cell *matHeaderCellDef>Descripcion</th>
+            <td mat-cell *matCellDef="let project">{{ project.descripcion || 'Sin descripcion' }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="acciones">
+            <th mat-header-cell *matHeaderCellDef>Acciones</th>
+            <td mat-cell *matCellDef="let project">
+              <button mat-flat-button color="primary" type="button" (click)="goToDetail(project); $event.stopPropagation()">Ver tareas</button>
+              <button mat-button type="button" (click)="openEditDialog(project, $event)">Editar</button>
+              <button mat-button color="warn" type="button" (click)="confirmDelete(project, $event)">Eliminar</button>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="goToDetail(row)"></tr>
+        </table>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</section>

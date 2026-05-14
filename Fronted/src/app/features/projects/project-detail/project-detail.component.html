@@ -1,0 +1,19 @@
+<section class="page">
+  <div class="page-header">
+    <div>
+      <a mat-button routerLink="/proyectos">Volver</a>
+      <h1>{{ project?.nombre || 'Proyecto' }}</h1>
+      <p>{{ project?.descripcion || 'Crea tareas, asigna estados y filtra el avance de este proyecto.' }}</p>
+    </div>
+  </div>
+
+  <mat-card *ngIf="loading">
+    <mat-card-content class="loading-state">
+      <mat-spinner diameter="42"></mat-spinner>
+    </mat-card-content>
+  </mat-card>
+
+  <p class="form-error" *ngIf="errorMessage">{{ errorMessage }}</p>
+
+  <app-task-list *ngIf="!loading && project" [projectId]="project.id"></app-task-list>
+</section>

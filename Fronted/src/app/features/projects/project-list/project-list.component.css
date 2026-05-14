@@ -1,0 +1,65 @@
+.workflow-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-bottom: 1.25rem;
+}
+
+.workflow-card {
+  background: #ffffff;
+  border: 1px solid var(--tf-border);
+  border-left: 4px solid var(--tf-aqua);
+  border-radius: 8px;
+  box-shadow: 0 10px 28px rgba(0, 121, 107, 0.08);
+  min-height: 128px;
+  padding: 1rem;
+}
+
+.workflow-card h2 {
+  color: var(--tf-aqua-dark);
+  font-size: 1rem;
+  margin: 0 0 0.55rem;
+}
+
+.workflow-card p {
+  color: var(--tf-muted);
+  line-height: 1.45;
+  margin: 0;
+}
+
+.empty-state {
+  gap: 1rem;
+}
+
+tr.mat-mdc-row {
+  cursor: pointer;
+}
+
+tr.mat-mdc-row:hover {
+  background: #edf9f6;
+}
+
+td.mat-mdc-cell:first-of-type {
+  color: var(--tf-aqua-dark);
+  font-weight: 600;
+}
+
+td.mat-mdc-cell:last-of-type {
+  white-space: nowrap;
+}
+
+td.mat-mdc-cell:last-of-type button {
+  margin-right: 0.35rem;
+}
+
+@media (max-width: 900px) {
+  .workflow-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .workflow-grid {
+    grid-template-columns: 1fr;
+  }
+}

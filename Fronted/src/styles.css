@@ -1,0 +1,150 @@
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+:root {
+  --tf-aqua: #00a896;
+  --tf-aqua-dark: #00796b;
+  --tf-aqua-soft: #dff8f3;
+  --tf-green: #22c55e;
+  --tf-ink: #12302b;
+  --tf-muted: #5f756f;
+  --tf-surface: #ffffff;
+  --tf-border: #cfe8e2;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background:
+    linear-gradient(180deg, #e8fbf7 0, #f5fbf9 280px, #f7fbfa 100%);
+  color: var(--tf-ink);
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.page {
+  margin: 0 auto;
+  max-width: 1120px;
+  padding: 2rem 1rem;
+}
+
+.page-header {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.page-header h1 {
+  color: var(--tf-ink);
+  font-size: 2rem;
+  margin: 0 0 0.25rem;
+}
+
+.page-header p {
+  color: var(--tf-muted);
+  margin: 0;
+}
+
+.auth-page {
+  align-items: center;
+  display: flex;
+  min-height: calc(100vh - 64px);
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.auth-card {
+  border: 1px solid var(--tf-border);
+  box-shadow: 0 18px 48px rgba(0, 121, 107, 0.14);
+  max-width: 440px;
+  width: 100%;
+}
+
+.form-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding-top: 1rem;
+}
+
+.form-error {
+  color: #c62828;
+  font-weight: 600;
+  margin: 0.5rem 0;
+}
+
+.loading-state,
+.empty-state {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 180px;
+  text-align: center;
+}
+
+.empty-state h2 {
+  margin: 0 0 0.4rem;
+}
+
+.empty-state p {
+  color: var(--tf-muted);
+  margin: 0;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+}
+
+mat-card {
+  border: 1px solid var(--tf-border);
+  border-radius: 8px;
+  box-shadow: 0 12px 32px rgba(0, 121, 107, 0.08);
+}
+
+.mat-mdc-raised-button.mat-primary,
+.mat-mdc-unelevated-button.mat-primary,
+.mat-mdc-fab.mat-primary,
+.mat-mdc-mini-fab.mat-primary {
+  --mdc-protected-button-container-color: var(--tf-aqua);
+  --mdc-filled-button-container-color: var(--tf-aqua);
+  --mat-filled-button-state-layer-color: #ffffff;
+}
+
+.mat-mdc-button.mat-primary,
+.mat-mdc-outlined-button.mat-primary {
+  --mdc-text-button-label-text-color: var(--tf-aqua-dark);
+  --mdc-outlined-button-label-text-color: var(--tf-aqua-dark);
+}
+
+.mat-mdc-progress-spinner {
+  --mdc-circular-progress-active-indicator-color: var(--tf-aqua);
+}
+
+.mat-mdc-form-field-focus-overlay {
+  background-color: var(--tf-aqua-soft);
+}
+
+button mat-spinner {
+  display: inline-block;
+  margin: 0 auto;
+}
+
+@media (max-width: 700px) {
+  .page-header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}
