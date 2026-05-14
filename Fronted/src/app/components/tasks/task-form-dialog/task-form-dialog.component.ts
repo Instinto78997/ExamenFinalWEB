@@ -6,8 +6,8 @@ import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/materia
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { AuthUser } from '../../../core/interfaces/auth.interface';
-import { TaskDto, TaskStatus } from '../../../core/interfaces/task.interface';
+import { AuthUser } from '../../../interfaces/auth.interface';
+import { TaskDto, TaskStatus } from '../../../interfaces/task.interface';
 
 export interface TaskFormDialogData {
   task?: TaskDto;

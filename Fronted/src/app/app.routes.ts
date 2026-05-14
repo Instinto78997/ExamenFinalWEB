@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
-import { authGuard } from './core/guards/auth.guard';
-import { LoginComponent } from './features/auth/login/login.component';
-import { RegisterComponent } from './features/auth/register/register.component';
-import { ProjectDetailComponent } from './features/projects/project-detail/project-detail.component';
-import { ProjectListComponent } from './features/projects/project-list/project-list.component';
+import { authGuard } from './guards/auth.guard';
+import { LoginComponent } from './components/auth/login/login.component';
+import { RegisterComponent } from './components/auth/register/register.component';
+import { ProjectDetailComponent } from './components/projects/project-detail/project-detail.component';
+import { ProjectListComponent } from './components/projects/project-list/project-list.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },

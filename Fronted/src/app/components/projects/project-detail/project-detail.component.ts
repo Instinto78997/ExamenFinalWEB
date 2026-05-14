@@ -4,8 +4,8 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { ProjectDto } from '../../../core/interfaces/project.interface';
-import { ProjectService } from '../../../core/services/project.service';
+import { ProjectDto } from '../../../interfaces/project.interface';
+import { ProjectService } from '../../../services/project.service';
 import { TaskListComponent } from '../../tasks/task-list/task-list.component';
 
 @Component({

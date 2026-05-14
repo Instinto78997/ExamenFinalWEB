@@ -7,7 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { AuthService } from '../../../core/services/auth.service';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -28,7 +28,7 @@ export class RegisterComponent {
   loading = false;
   errorMessage = '';
 
-  readonly form = this.fb.nonNullable.group({
+  readonly form = this.fb.group({
     nombre: ['', [Validators.required, Validators.minLength(2)]],
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]]
@@ -49,7 +49,11 @@ export class RegisterComponent {
     this.loading = true;
     this.errorMessage = '';
 
-    this.authService.register(this.form.getRawValue()).subscribe({
+    this.authService.register({
+      nombre: this.form.controls.nombre.value!,
+      email: this.form.controls.email.value!,
+      password: this.form.controls.password.value!
+    }).subscribe({
       next: () => this.router.navigate(['/proyectos']),
       error: (error) => {
         this.errorMessage = error.error?.message ?? 'No se pudo crear la cuenta';

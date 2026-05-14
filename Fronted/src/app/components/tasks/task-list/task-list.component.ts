@@ -7,10 +7,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
-import { TaskDto, TaskStatus } from '../../../core/interfaces/task.interface';
-import { AuthService } from '../../../core/services/auth.service';
-import { TaskService } from '../../../core/services/task.service';
-import { ConfirmDialogComponent } from '../../../shared/confirm-dialog/confirm-dialog.component';
+import { TaskDto, TaskStatus } from '../../../interfaces/task.interface';
+import { AuthService } from '../../../services/auth.service';
+import { TaskService } from '../../../services/task.service';
+import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
 import { TaskFormDialogComponent, TaskFormValue } from '../task-form-dialog/task-form-dialog.component';
 
 @Component({
@@ -85,9 +85,7 @@ export class TaskListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((value?: TaskFormValue) => {
-      if (!value) {
-        return;
-      }
+      if (!value) return;
 
       this.taskService.create(this.projectId, value).subscribe({
         next: (task) => {
@@ -106,9 +104,7 @@ export class TaskListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((value?: TaskFormValue) => {
-      if (!value) {
-        return;
-      }
+      if (!value) return;
 
       this.taskService.update(task.id, value).subscribe({
         next: (updatedTask) => {
@@ -130,9 +126,7 @@ export class TaskListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((confirmed) => {
-      if (!confirmed) {
-        return;
-      }
+      if (!confirmed) return;
 
       this.taskService.delete(task.id).subscribe({
         next: () => {

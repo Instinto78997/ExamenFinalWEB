@@ -6,9 +6,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTableModule } from '@angular/material/table';
-import { ProjectDto } from '../../../core/interfaces/project.interface';
-import { ProjectService } from '../../../core/services/project.service';
-import { ConfirmDialogComponent } from '../../../shared/confirm-dialog/confirm-dialog.component';
+import { ProjectDto } from '../../../interfaces/project.interface';
+import { ProjectService } from '../../../services/project.service';
+import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
 import { ProjectFormDialogComponent, ProjectFormValue } from '../project-form-dialog/project-form-dialog.component';
 
 @Component({
@@ -24,22 +24,10 @@ export class ProjectListComponent implements OnInit {
   errorMessage = '';
   readonly displayedColumns = ['nombre', 'descripcion', 'acciones'];
   readonly workflowItems = [
-    {
-      title: '1. Crear proyecto',
-      text: 'Registra cada iniciativa del equipo para agrupar su trabajo.'
-    },
-    {
-      title: '2. Crear tareas',
-      text: 'Entra a un proyecto y agrega tareas asociadas a ese proyecto.'
-    },
-    {
-      title: '3. Asignar estado',
-      text: 'Cada tarea puede estar pendiente, en progreso o completada.'
-    },
-    {
-      title: '4. Filtrar trabajo',
-      text: 'Visualiza las tareas por estado dentro de cada proyecto.'
-    }
+    { title: '1. Crear proyecto', text: 'Registra cada iniciativa del equipo para agrupar su trabajo.' },
+    { title: '2. Crear tareas', text: 'Entra a un proyecto y agrega tareas asociadas a ese proyecto.' },
+    { title: '3. Asignar estado', text: 'Cada tarea puede estar pendiente, en progreso o completada.' },
+    { title: '4. Filtrar trabajo', text: 'Visualiza las tareas por estado dentro de cada proyecto.' }
   ];
 
   constructor(
@@ -72,9 +60,7 @@ export class ProjectListComponent implements OnInit {
     const dialogRef = this.dialog.open(ProjectFormDialogComponent, { width: '520px', data: {} });
 
     dialogRef.afterClosed().subscribe((value?: ProjectFormValue) => {
-      if (!value) {
-        return;
-      }
+      if (!value) return;
 
       this.projectService.create(value).subscribe({
         next: (project) => {
@@ -94,9 +80,7 @@ export class ProjectListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((value?: ProjectFormValue) => {
-      if (!value) {
-        return;
-      }
+      if (!value) return;
 
       this.projectService.update(project.id, value).subscribe({
         next: (updatedProject) => {
@@ -118,9 +102,7 @@ export class ProjectListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((confirmed) => {
-      if (!confirmed) {
-        return;
-      }
+      if (!confirmed) return;
 
       this.projectService.delete(project.id).subscribe({
         next: () => this.projects = this.projects.filter((item) => item.id !== project.id),

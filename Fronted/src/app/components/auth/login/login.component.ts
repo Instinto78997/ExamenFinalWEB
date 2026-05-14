@@ -7,7 +7,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { AuthService } from '../../../core/services/auth.service';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -28,7 +28,7 @@ export class LoginComponent {
   loading = false;
   errorMessage = '';
 
-  readonly form = this.fb.nonNullable.group({
+  readonly form = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required]]
   });
@@ -48,7 +48,10 @@ export class LoginComponent {
     this.loading = true;
     this.errorMessage = '';
 
-    this.authService.login(this.form.getRawValue()).subscribe({
+    this.authService.login({
+      email: this.form.controls.email.value!,
+      password: this.form.controls.password.value!
+    }).subscribe({
       next: () => this.router.navigate(['/proyectos']),
       error: (error) => {
         this.errorMessage = error.error?.message ?? 'No se pudo iniciar sesion';
